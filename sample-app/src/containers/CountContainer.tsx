@@ -13,17 +13,19 @@ interface StateToProps {
 interface DispatchToProps {
   increment: () => void;
   decrement: () => void;
+  incrementAsync: () => void;
 }
 
 type Props = StateToProps & DispatchToProps;
 
 function CountContainer(props: Props) {
-  const { value, increment, decrement } = props;
+  const { value, increment, decrement, incrementAsync } = props;
   return (
     <Counter 
       value={value}
       increment={increment}
       decrement={decrement}
+      incrementAsync={incrementAsync}
     />
   );
 }
@@ -42,6 +44,9 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchToProps {
     },
     decrement: () => {
       dispatch(counterActionCreator.decrementAction())
+    },
+    incrementAsync: () => {
+      dispatch(counterActionCreator.incrementAsyncAction())
     }
   };
 }
