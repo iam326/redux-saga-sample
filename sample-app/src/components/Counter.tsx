@@ -3,7 +3,7 @@ import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RootState } from '../reducers';
 
-import actionCreator from '../actions/count';
+import actionCreator from '../actions/counter';
 
 interface Props {
   increment: () => void;

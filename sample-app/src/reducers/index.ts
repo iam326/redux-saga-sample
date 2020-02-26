@@ -1,5 +1,5 @@
 import { combineReducers, Reducer } from 'redux';
-import countReducer, { CounterState } from './count';
+import countReducer, { CounterState } from './counter';
 
 export interface RootState {
   counter: CounterState;
