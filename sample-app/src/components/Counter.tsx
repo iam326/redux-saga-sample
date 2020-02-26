@@ -1,9 +1,4 @@
 import React from 'react';
-import { Action, Dispatch } from 'redux';
-import { connect } from 'react-redux';
-import { RootState } from '../reducers';
-
-import actionCreator from '../actions/counter';
 
 interface Props {
   increment: () => void;
@@ -11,7 +6,7 @@ interface Props {
   value: number;
 }
 
-function Counter(props: Props) {
+export default function Counter(props: Props) {
   return (
     <div>
       <button onClick={props.increment}>
@@ -26,31 +21,3 @@ function Counter(props: Props) {
     </div>
   )
 }
-
-interface DispatchToProps {
-  increment: () => void;
-  decrement: () => void;
-}
-
-function mapStateToProps(state: RootState) {
-  const { counter } = state;
-  return {
-    value: counter.value
-  }
-}
-
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchToProps {
-  return {
-    increment: () => {
-      dispatch(actionCreator('INCREMENT'))
-    },
-    decrement: () => {
-      dispatch(actionCreator('DECREMENT'))
-    }
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Counter);
