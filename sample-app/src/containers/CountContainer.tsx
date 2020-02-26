@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Action, Dispatch } from 'redux';
 
-import { RootState } from '../reducers';
-import actionCreator from '../actions/counter';
+import { RootState } from '../store/configureStore';
+import { counterActionCreator} from '../actions/counter';
 import Counter from '../components/Counter';
 
 interface StateToProps {
@@ -28,22 +28,22 @@ function CountContainer(props: Props) {
   );
 }
 
-function mapStateToProps(state: RootState) {
+function mapStateToProps(state: RootState): StateToProps {
   const { counter } = state;
   return {
     value: counter.value
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchToProps {
   return {
     increment: () => {
-      dispatch(actionCreator('INCREMENT'))
+      dispatch(counterActionCreator.incrementAction())
     },
     decrement: () => {
-      dispatch(actionCreator('DECREMENT'))
+      dispatch(counterActionCreator.decrementAction())
     }
-  }
+  };
 }
 
 export default connect(
