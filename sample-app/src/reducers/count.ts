@@ -1,5 +1,5 @@
 export type CounterState = {
-  counter: number;
+  value: number;
 }
 
 export type CounterAction =
@@ -12,18 +12,18 @@ export type CounterAction =
 ;
 
 const initialState: CounterState = {
-  counter: 0
+  value: 0
 };
 
-export default function counter(state = initialState, action: CounterAction) {
+export default function countReducer(state = initialState, action: CounterAction) {
   switch (action.type) {
     case 'INCREMENT':
       return {
-        counter: state.counter + 1
+        value: state.value + 1
       };
     case 'DECREMENT':
       return {
-        counter: state.counter - 1
+        value: state.value - 1
       };
     default:
       return state;

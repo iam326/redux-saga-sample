@@ -1,5 +1,5 @@
 import { Action, createStore, Store } from 'redux';
-import reducer, { CounterState } from '../reducers/count';
+import reducer, { RootState } from '../reducers';
 
-const store: Store<CounterState, Action>  = createStore(reducer);
+const store: Store<RootState, Action>  = createStore(reducer);
 export default store;
