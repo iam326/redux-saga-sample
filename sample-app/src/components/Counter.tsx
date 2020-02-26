@@ -1,9 +1,9 @@
 import React from 'react';
 import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { RootState } from './reducers';
+import { RootState } from '../reducers';
 
-import actionCreator from './actions/count';
+import actionCreator from '../actions/count';
 
 interface Props {
   increment: () => void;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import Counter from './Counter';
+import Counter from './components/Counter';
 import configureStore from './store/configureStore';
 
 const store = configureStore();
