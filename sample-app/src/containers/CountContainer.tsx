@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Action, Dispatch } from 'redux';
+import { Dispatch } from 'redux';
+import { Action } from 'typescript-fsa';
 
 import { RootState } from '../store/configureStore';
-import { counterActionCreator} from '../actions/counter';
+import { actions } from '../actions/counter';
 import Counter from '../components/Counter';
 
 interface StateToProps {
@@ -37,16 +38,16 @@ function mapStateToProps(state: RootState): StateToProps {
   };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchToProps {
+function mapDispatchToProps(dispatch: Dispatch<Action<void>>): DispatchToProps {
   return {
     increment: () => {
-      dispatch(counterActionCreator.incrementAction())
+      dispatch(actions.increment())
     },
     decrement: () => {
-      dispatch(counterActionCreator.decrementAction())
+      dispatch(actions.decrement())
     },
     incrementAsync: () => {
-      dispatch(counterActionCreator.incrementAsyncAction())
+      dispatch(actions.incrementAsync())
     }
   };
 }

@@ -1,12 +1,12 @@
 import { put, takeEvery, delay } from 'redux-saga/effects';
 
-import { CounterActionType, counterActionCreator } from '../actions/counter';
+import { actions } from '../actions/counter';
 
 export function* incrementAsync() {
   yield delay(1000);
-  yield put(counterActionCreator.incrementAction());
+  yield put(actions.increment());
 }
 
 export default function* rootSaga() {
-  yield takeEvery(CounterActionType.INCREMENT_ASYNC, incrementAsync);
+  yield takeEvery(actions.incrementAsync, incrementAsync);
 }

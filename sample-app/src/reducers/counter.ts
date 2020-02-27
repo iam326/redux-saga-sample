@@ -1,24 +1,18 @@
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
+
 import { CounterState } from '../store/configureStore';
-import { CounterAction, CounterActionType } from '../actions/counter';
+import { actions } from '../actions/counter';
 
 const initialState: CounterState = {
   value: 0
 };
 
-export default function countReducer(
-  state: CounterState = initialState,
-  action: CounterAction
-): CounterState {
-  switch (action.type) {
-    case CounterActionType.INCREMENT:
-      return {
-        value: state.value + 1
-      };
-    case CounterActionType.DECREMENT:
-      return {
-        value: state.value - 1
-      };
-    default:
-      return state;
-  }
-}
+const countReducer = reducerWithInitialState(initialState)
+  .case(actions.increment, state => {
+    return { value: state.value + 1 };
+  })
+  .case(actions.decrement, state => {
+    return { value: state.value - 1 };
+  });
+
+export default countReducer;
