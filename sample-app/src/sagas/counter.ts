@@ -5,8 +5,7 @@ import { bindAsyncAction } from 'typescript-fsa-redux-saga';
 import { actions } from '../actions/counter';
 
 const delay = async (): Promise<void> => {
-  console.log('delay!');
-  await new Promise(resolve => setTimeout(resolve, 10000))
+  await new Promise(resolve => setTimeout(resolve, 1000))
 }
 
 function* worker() {

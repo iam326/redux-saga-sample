@@ -13,6 +13,9 @@ const countReducer = reducerWithInitialState(initialState)
   })
   .case(actions.decrement, state => {
     return { value: state.value - 1 };
+  })
+  .case(actions.incrementAsync.done, state => {
+    return { value: state.value + 1 };
   });
 
 export default countReducer;
