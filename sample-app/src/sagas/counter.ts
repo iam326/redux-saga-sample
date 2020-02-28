@@ -1,12 +1,29 @@
-import { put, takeEvery, delay } from 'redux-saga/effects';
+import { SagaIterator } from 'redux-saga';
+import { call, fork, takeEvery } from 'redux-saga/effects';
+import { bindAsyncAction } from 'typescript-fsa-redux-saga';
 
 import { actions } from '../actions/counter';
 
-export function* incrementAsync() {
-  yield delay(1000);
-  yield put(actions.increment());
+const delay = async (): Promise<void> => {
+  console.log('delay!');
+  await new Promise(resolve => setTimeout(resolve, 10000))
 }
 
-export default function* rootSaga() {
-  yield takeEvery(actions.incrementAsync, incrementAsync);
+function* worker() {
+  return yield call(delay)
+}
+
+const boundWorker = bindAsyncAction(
+  actions.incrementAsync,
+  { skipStartedAction: true }
+)(worker)
+
+function* incrementAsyncHandler(): SagaIterator {
+  yield takeEvery(actions.incrementAsync.started, function*() {
+    yield call(boundWorker)
+  });
+}
+
+export default function* rootSaga(): SagaIterator {
+  yield fork(incrementAsyncHandler)
 }

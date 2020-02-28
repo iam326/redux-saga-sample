@@ -47,7 +47,7 @@ function mapDispatchToProps(dispatch: Dispatch<Action<void>>): DispatchToProps {
       dispatch(actions.decrement())
     },
     incrementAsync: () => {
-      dispatch(actions.incrementAsync())
+      dispatch(actions.incrementAsync.started())
     }
   };
 }

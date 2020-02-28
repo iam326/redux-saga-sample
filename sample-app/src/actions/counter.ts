@@ -5,5 +5,5 @@ const actionCreator = actionCreatorFactory();
 export const actions = {
   increment: actionCreator('INCREMENT'),
   decrement: actionCreator('DECREMENT'),
-  incrementAsync: actionCreator('INCREMENT_ASYNC')
+  incrementAsync: actionCreator.async<void, void>('INCREMENT_ASYNC')
 };
