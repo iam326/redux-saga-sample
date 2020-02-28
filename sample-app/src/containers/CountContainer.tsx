@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import { Action } from 'typescript-fsa';
+import { Dispatch, bindActionCreators, ActionCreator } from 'redux';
 
 import { RootState } from '../store/configureStore';
 import { actions } from '../actions/counter';
@@ -12,9 +11,9 @@ interface StateToProps {
 }
 
 interface DispatchToProps {
-  increment: () => void;
-  decrement: () => void;
-  incrementAsync: () => void;
+  increment: ActionCreator<void>;
+  decrement: ActionCreator<void>;
+  incrementAsync: ActionCreator<void>;
 }
 
 type Props = StateToProps & DispatchToProps;
@@ -38,18 +37,12 @@ function mapStateToProps(state: RootState): StateToProps {
   };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<Action<void>>): DispatchToProps {
-  return {
-    increment: () => {
-      dispatch(actions.increment())
-    },
-    decrement: () => {
-      dispatch(actions.decrement())
-    },
-    incrementAsync: () => {
-      dispatch(actions.incrementAsync.started())
-    }
-  };
+function mapDispatchToProps(dispatch: Dispatch): DispatchToProps {
+  return bindActionCreators({
+      increment: actions.increment,
+      decrement: actions.decrement,
+      incrementAsync: actions.incrementAsync.started
+    }, dispatch);
 }
 
 export default connect(
