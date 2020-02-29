@@ -4,7 +4,7 @@ React+Redux 及び Redux-Saga のサンプル。
 
 ## Demo
 
-![demo](https://raw.github.com/wiki/iam326/redux-saga-sample/images/demo.gif)
+<img src="https://raw.github.com/wiki/iam326/redux-saga-sample/images/demo.gif" width="480px">
 
 ## Usage
 
